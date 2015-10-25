@@ -8,7 +8,7 @@ namespace GA_Travaling_Salesman
 {
     class Solution : IEquatable<Solution>, IComparable<Solution>
     {
-        public List<City> genome; //also the phenotype
+        public List<City> genome=new List<City>(); //also the phenotype
         public double fitness;
 
         public Solution()

@@ -68,20 +68,20 @@ namespace GA_Travaling_Salesman
             Solution parent1 = solutionList[start];
             Solution parent2 = solutionList[start+1];
 
-            string child1string="";
-            string child2string="";
+            List<City> child1string = new List<City>();
+            List<City> child2string = new List<City>();
 
             for(int i=0;i<G.target_size;i++)
             {
                 if((i<cross1)||(i>cross2))
                 {
-                    child1string += parent1.genome[i];
-                    child2string += parent2.genome[i];
+                    child1string[i] = parent1.genome[i];
+                    child2string[i] = parent2.genome[i];
                 }
                 else
                 {
-                    child1string += parent2.genome[i];
-                    child2string += parent1.genome[i];
+                    child1string[i] = parent2.genome[i];
+                    child2string[i] = parent1.genome[i];
                 }
             }
             solutionList[start + 2].genome = child1string;
