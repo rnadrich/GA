@@ -29,12 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.BackThreadEvolution = new System.ComponentModel.BackgroundWorker();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonExecute = new System.Windows.Forms.ToolStripButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.progressBarBackThreadEvolution = new System.Windows.Forms.ProgressBar();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // BackThreadEvolution
+            // 
+            this.BackThreadEvolution.WorkerReportsProgress = true;
+            this.BackThreadEvolution.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerEvolution_DoWork);
+            this.BackThreadEvolution.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerEvolution_ProgressChanged);
+            this.BackThreadEvolution.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerEvolution_RunWorkerCompleted);
             // 
             // toolStrip1
             // 
@@ -56,22 +63,20 @@
             this.toolStripButtonExecute.Text = "toolStripButtonExecute";
             this.toolStripButtonExecute.Click += new System.EventHandler(this.toolStripButtonExecute_Click);
             // 
-            // label1
+            // progressBarBackThreadEvolution
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 61);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
-            this.label1.Visible = false;
+            this.progressBarBackThreadEvolution.Location = new System.Drawing.Point(12, 308);
+            this.progressBarBackThreadEvolution.Name = "progressBarBackThreadEvolution";
+            this.progressBarBackThreadEvolution.Size = new System.Drawing.Size(499, 23);
+            this.progressBarBackThreadEvolution.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBarBackThreadEvolution.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(523, 343);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.progressBarBackThreadEvolution);
             this.Controls.Add(this.toolStrip1);
             this.Name = "Form1";
             this.Text = "Traveling Salesman";
@@ -84,10 +89,10 @@
 
         #endregion
 
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker BackThreadEvolution;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButtonExecute;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ProgressBar progressBarBackThreadEvolution;
     }
 }
 

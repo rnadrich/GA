@@ -20,11 +20,29 @@ namespace GA_Travaling_Salesman
 
         private void toolStripButtonExecute_Click(object sender, EventArgs e)
         {
+            toolStripButtonExecute.Enabled = false;
+            BackThreadEvolution.RunWorkerAsync();
+           
 
-            GeneticAlgorithmn ga=new GeneticAlgorithmn();
-            ga.pop.runGenerations(1);
-            System.IO.File.WriteAllText("Output",Population.bestSolution.displayString + ":" + Population.bestSolution.fitness);
+        }
 
+        private void backgroundWorkerEvolution_DoWork(object sender, DoWorkEventArgs e)
+        {
+            
+            GeneticAlgorithmn ga = new GeneticAlgorithmn();
+            ga.pop.runGenerations(100);
+        }
+
+        private void backgroundWorkerEvolution_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            toolStripButtonExecute.Enabled = true;
+            progressBarBackThreadEvolution.Value = 100;
+            System.IO.File.WriteAllText("Output.txt", "Generation"+Population.generationsSoFar+ ")" +Population.bestSolution.displayString + ":" + Population.bestSolution.fitness);
+        }
+
+        private void backgroundWorkerEvolution_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBarBackThreadEvolution.Value = e.ProgressPercentage;
         }
 
 
