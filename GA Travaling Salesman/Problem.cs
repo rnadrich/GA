@@ -62,7 +62,7 @@ namespace GA_Travaling_Salesman
                 Population.bestSolution = s;
                 Population.bestHasChanged = true;
             }
-            if (s > Population.bestSolution)
+            if (s < Population.bestSolution)
             {
                 Population.bestSolution = s;
                 Population.bestHasChanged = true;

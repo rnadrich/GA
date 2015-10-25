@@ -20,8 +20,6 @@ namespace GA_Travaling_Salesman
         {
             
             initializePopulation();
-            bestSolution = new Solution();
-            bestHasChanged = false;
             generationsSoFar = 0;
         }
 
