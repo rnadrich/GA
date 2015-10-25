@@ -109,11 +109,11 @@ namespace GA_Travaling_Salesman
             for (int i = 0; i < howMany; i++)
             {
                 runGeneration();
-                if (Problem.isOptimal(bestSolution))
+               /* if (Problem.isOptimal(bestSolution))
                 {
                     soundPlayer.Play();
                     break;
-                }
+                }*/
                 int percentage = (int)(100.0 * (((double)i) / ((double)howMany)));
                 bWorker.ReportProgress(percentage);
             }
@@ -124,11 +124,11 @@ namespace GA_Travaling_Salesman
             for (int i = 0; i < howMany; i++)
             {
                 runGeneration();
-                if (Problem.isOptimal(bestSolution))
+                /*if (Problem.isOptimal(bestSolution))
                 {
                     soundPlayer.Play();
                     break;
-                }
+                }*/
                 int percentage = (int)(100.0 * (((double)i) / ((double)howMany)));
             }
         }
