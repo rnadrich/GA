@@ -52,11 +52,16 @@ namespace GA_Travaling_Salesman
             {
                 end = s.genome[i];
                 score+=calculateDistance(start, end);
-                if (s.genome.Contains(end)) score += 200;
+                if (visited.Contains(end)) score += 50;
                 else visited.Add(end);
                 start = end;
             }
             s.fitness = score;
+            if (Population.bestSolution == null)
+            {
+                Population.bestSolution = s;
+                Population.bestHasChanged = true;
+            }
             if (s > Population.bestSolution)
             {
                 Population.bestSolution = s;
@@ -70,7 +75,7 @@ namespace GA_Travaling_Salesman
            int difX,difY;
            difX=begin.location.Item1-end.location.Item1;
            difY=begin.location.Item2-end.location.Item2;
-           dist = Math.Sqrt(difX ^ 2 + difY ^ 2);
+           dist = Math.Sqrt(difX*difX + difY*difY);
             return dist;
         }
 

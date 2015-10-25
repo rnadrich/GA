@@ -12,6 +12,7 @@ namespace GA_Travaling_Salesman
 {
     public partial class Form1 : Form
     {
+        
         public Form1()
         {
             InitializeComponent();
@@ -19,7 +20,15 @@ namespace GA_Travaling_Salesman
 
         private void toolStripButtonExecute_Click(object sender, EventArgs e)
         {
-            
+
+            GeneticAlgorithmn ga=new GeneticAlgorithmn();
+            ga.pop.runGenerations(1);
+            System.IO.File.WriteAllText("Output",Population.bestSolution.displayString + ":" + Population.bestSolution.fitness);
+
         }
+
+
+
+
     }
 }

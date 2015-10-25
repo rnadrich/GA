@@ -38,7 +38,9 @@ namespace GA_Travaling_Salesman
             for (int i = 0; i < G.target_size; i++)
             {
                // genome += G.randChar();
-                genome[i] = Population.CitiesToVisit[G.rand(G.target_size)];
+                int index=G.rand(G.target_size);
+                City temp = Population.CitiesToVisit[index];
+                genome.Add(temp);
             }
         }
 

@@ -8,10 +8,10 @@ namespace GA_Travaling_Salesman
 {
     class GeneticAlgorithmn
     {
+       
         public Population pop = new Population();
-
         public void reset()
-        {
+        {  
             pop=new Population();
         }
     }

@@ -10,15 +10,15 @@ namespace GA_Travaling_Salesman
 {
     class Population
     {
-        static public List<City> CitiesToVisit = new List<City>();
+       static public List<City> CitiesToVisit = new List<City>();
         List<Solution> solutionList = new List<Solution>();
-        static public Solution bestSolution= new Solution();
+        static public Solution bestSolution;
         static public bool bestHasChanged = false;
-        static SoundPlayer soundPlayer = new SoundPlayer("GameOver.wav");
         public static int generationsSoFar = 0;
 
         public Population()
         {
+            
             initializePopulation();
             bestSolution = new Solution();
             bestHasChanged = false;
@@ -75,13 +75,13 @@ namespace GA_Travaling_Salesman
             {
                 if((i<cross1)||(i>cross2))
                 {
-                    child1string[i] = parent1.genome[i];
-                    child2string[i] = parent2.genome[i];
+                    child1string.Add( parent1.genome[i]);
+                    child2string.Add( parent2.genome[i]);
                 }
                 else
                 {
-                    child1string[i] = parent2.genome[i];
-                    child2string[i] = parent1.genome[i];
+                    child1string.Add(parent2.genome[i]);
+                    child2string.Add(parent1.genome[i]);
                 }
             }
             solutionList[start + 2].genome = child1string;
@@ -101,11 +101,9 @@ namespace GA_Travaling_Salesman
             }
         }
 
-        bool runningInBackground = true;
 
         public void runGenerations(int howMany, BackgroundWorker bWorker)
         {
-            runningInBackground = true;
             for (int i = 0; i < howMany; i++)
             {
                 runGeneration();
@@ -120,7 +118,6 @@ namespace GA_Travaling_Salesman
         }
         public void runGenerations(int howMany)
         {
-            runningInBackground = false;
             for (int i = 0; i < howMany; i++)
             {
                 runGeneration();
@@ -140,9 +137,10 @@ namespace GA_Travaling_Salesman
                 Solution sol = new Solution();
                 solutionList.Add(sol);
             }
-           // Evaluate();
+            Evaluate();
         }
-
+        
+   
 
         void Shuffle()
         {
@@ -165,7 +163,7 @@ namespace GA_Travaling_Salesman
             rhs = temp;
         }
 
-       void generateCitiesToVisit()
+        void generateCitiesToVisit()
         {
             for (int i = 0; i < G.target_size; i++)
             {

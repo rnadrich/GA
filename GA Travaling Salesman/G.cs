@@ -30,6 +30,7 @@ namespace GA_Travaling_Salesman
         }
 
 
+
     
     }
 }
