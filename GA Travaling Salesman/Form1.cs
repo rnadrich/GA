@@ -7,7 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/*TODO:
+ * Work on UI more
+ * have it run and clear for 50 different populations
+ * 
+ * 
 namespace GA_Travaling_Salesman
 {
     public partial class Form1 : Form
