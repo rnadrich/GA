@@ -28,6 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, 10D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(5D, 10D);
             this.BackThreadEvolution = new System.ComponentModel.BackgroundWorker();
             this.progressBarBackThreadEvolution = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
@@ -35,6 +41,8 @@
             this.textBoxGenerations = new System.Windows.Forms.TextBox();
             this.textBoxRuns = new System.Windows.Forms.TextBox();
             this.buttonRun = new System.Windows.Forms.Button();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // BackThreadEvolution
@@ -46,9 +54,9 @@
             // 
             // progressBarBackThreadEvolution
             // 
-            this.progressBarBackThreadEvolution.Location = new System.Drawing.Point(12, 308);
+            this.progressBarBackThreadEvolution.Location = new System.Drawing.Point(12, 102);
             this.progressBarBackThreadEvolution.Name = "progressBarBackThreadEvolution";
-            this.progressBarBackThreadEvolution.Size = new System.Drawing.Size(499, 23);
+            this.progressBarBackThreadEvolution.Size = new System.Drawing.Size(560, 23);
             this.progressBarBackThreadEvolution.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBarBackThreadEvolution.TabIndex = 1;
             // 
@@ -96,11 +104,32 @@
             this.buttonRun.UseVisualStyleBackColor = true;
             this.buttonRun.Click += new System.EventHandler(this.toolStripButtonExecute_Click);
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(16, 131);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series1.Legend = "Legend1";
+            series1.Name = "Best Solution";
+            series1.Points.Add(dataPoint1);
+            series1.Points.Add(dataPoint2);
+            series1.Points.Add(dataPoint3);
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(547, 569);
+            this.chart1.TabIndex = 8;
+            this.chart1.Text = "chart1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 343);
+            this.ClientSize = new System.Drawing.Size(584, 712);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.buttonRun);
             this.Controls.Add(this.textBoxRuns);
             this.Controls.Add(this.textBoxGenerations);
@@ -109,6 +138,7 @@
             this.Controls.Add(this.progressBarBackThreadEvolution);
             this.Name = "Form1";
             this.Text = "Traveling Salesman";
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,6 +153,7 @@
         private System.Windows.Forms.TextBox textBoxGenerations;
         private System.Windows.Forms.TextBox textBoxRuns;
         private System.Windows.Forms.Button buttonRun;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 

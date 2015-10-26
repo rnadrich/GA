@@ -18,9 +18,11 @@ namespace GA_Travaling_Salesman
 
         public Population()
         {
-            
             initializePopulation();
+            bestSolution = solutionList[0];
+            bestHasChanged = false;
             generationsSoFar = 0;
+
         }
 
 
@@ -112,6 +114,7 @@ namespace GA_Travaling_Salesman
                 }*/
                 int percentage = (int)(100.0 * (((double)i) / ((double)howMany)));
                 bWorker.ReportProgress(percentage);
+               // bestHasChanged = false;
             }
         }
         public void runGenerations(int howMany)

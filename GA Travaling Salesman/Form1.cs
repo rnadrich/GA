@@ -27,8 +27,12 @@ namespace GA_Travaling_Salesman
         private void toolStripButtonExecute_Click(object sender, EventArgs e)
         {
             buttonRun.Enabled = false;
-            BackThreadEvolution.RunWorkerAsync();
             numOfRunsCompleted = 0;
+            chart1.Series.Clear();
+            chart1.Series.Add("Best Solution");
+            chart1.Series["Best Solution"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            BackThreadEvolution.RunWorkerAsync();
+            
         }
 
         private void backgroundWorkerEvolution_DoWork(object sender, DoWorkEventArgs e)
@@ -42,8 +46,9 @@ namespace GA_Travaling_Salesman
                 System.IO.File.WriteAllText("Run "+ numOfRunsCompleted+" Generation " + Population.generationsSoFar + " Output.txt", "Generation" + Population.generationsSoFar + ")\n" + Population.bestSolution.displayString + Population.bestSolution.fitness);
                 buttonRun.Enabled = true;
                 numOfRunsCompleted++;
-                if (numOfRunsCompleted <= Convert.ToInt32(textBoxRuns.Text))
+                if (numOfRunsCompleted < Convert.ToInt32(textBoxRuns.Text))
                 {
+                    chart1.Series["Best Solution"].Points.Clear();
                     ga.reset();
                     BackThreadEvolution.RunWorkerAsync();             
                 }
@@ -52,6 +57,16 @@ namespace GA_Travaling_Salesman
         private void backgroundWorkerEvolution_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBarBackThreadEvolution.Value = e.ProgressPercentage;
+            if(Population.bestHasChanged == true)
+            {
+                chart1.Series["Best Solution"].Points.Clear();
+                foreach (City c in Population.bestSolution.genome)
+                {
+                    int x=c.location.Item1,
+                        y=c.location.Item2;
+                    chart1.Series["Best Solution"].Points.AddXY(x, y);
+                }
+            }
         }
 
 
