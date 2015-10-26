@@ -28,6 +28,7 @@ namespace GA_Travaling_Salesman
         {
             buttonRun.Enabled = false;
             numOfRunsCompleted = 0;
+            chart1.Visible = true;
             chart1.Series.Clear();
             chart1.Series.Add("Best Solution");
             chart1.Series["Best Solution"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;

@@ -123,6 +123,7 @@
             this.chart1.Size = new System.Drawing.Size(547, 569);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
+            this.chart1.Visible = false;
             // 
             // Form1
             // 

@@ -28,6 +28,7 @@ namespace GA_Travaling_Salesman
 
         void runGeneration()
         {
+            bestHasChanged = false;
             Tournaments();
             Mutate();
             generationsSoFar++;
