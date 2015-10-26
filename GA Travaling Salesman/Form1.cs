@@ -11,13 +11,14 @@ using System.Windows.Forms;
  * Work on UI more
  * have it run and clear for 50 different populations
  * 
- * 
+ *
+ */
 namespace GA_Travaling_Salesman
 {
     public partial class Form1 : Form
     {
         GeneticAlgorithmn ga = new GeneticAlgorithmn();
-        int count = 0;
+        int numOfRunsCompleted = 0;
         public Form1()
         {
             InitializeComponent();
@@ -25,36 +26,27 @@ namespace GA_Travaling_Salesman
 
         private void toolStripButtonExecute_Click(object sender, EventArgs e)
         {
-            toolStripButtonExecute.Enabled = false;
+            buttonRun.Enabled = false;
             BackThreadEvolution.RunWorkerAsync();
+            numOfRunsCompleted = 0;
         }
 
         private void backgroundWorkerEvolution_DoWork(object sender, DoWorkEventArgs e)
         {
-            
-
-            ga.pop.runGenerations(10,BackThreadEvolution);
+            ga.pop.runGenerations(Convert.ToInt32(textBoxGenerations.Text),BackThreadEvolution);
         }
 
         private void backgroundWorkerEvolution_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (count < 10)
-            {
-                count++;
-                toolStripButtonExecute.Enabled = true;
                 progressBarBackThreadEvolution.Value = 100;
-                System.IO.File.WriteAllText("Generation " + Population.generationsSoFar + " Output.txt", "Generation" + Population.generationsSoFar + ")\n" + Population.bestSolution.displayString + Population.bestSolution.fitness);
-                toolStripButtonExecute.Enabled = false;
-                BackThreadEvolution.RunWorkerAsync();
-            }
-            else
-            {
-                count = 0;
-                toolStripButtonExecute.Enabled = true;
-                progressBarBackThreadEvolution.Value = 100;
-                System.IO.File.WriteAllText("Generation " + Population.generationsSoFar + " Output.txt", "Generation" + Population.generationsSoFar + ")\n" + Population.bestSolution.displayString + Population.bestSolution.fitness);
-            }
-            
+                System.IO.File.WriteAllText("Run "+ numOfRunsCompleted+" Generation " + Population.generationsSoFar + " Output.txt", "Generation" + Population.generationsSoFar + ")\n" + Population.bestSolution.displayString + Population.bestSolution.fitness);
+                buttonRun.Enabled = true;
+                numOfRunsCompleted++;
+                if (numOfRunsCompleted <= Convert.ToInt32(textBoxRuns.Text))
+                {
+                    ga.reset();
+                    BackThreadEvolution.RunWorkerAsync();             
+                }
         }
 
         private void backgroundWorkerEvolution_ProgressChanged(object sender, ProgressChangedEventArgs e)

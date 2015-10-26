@@ -52,7 +52,7 @@ namespace GA_Travaling_Salesman
             {
                 end = s.genome[i];
                 score+=calculateDistance(start, end);
-                if (visited.Contains(end)) score += 50;
+                if (visited.Contains(end)) score += 1000;
                 else visited.Add(end);
                 start = end;
             }

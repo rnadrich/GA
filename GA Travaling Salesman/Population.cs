@@ -63,8 +63,8 @@ namespace GA_Travaling_Salesman
             while(cross1==cross2) cross2 = G.rand(G.target_size);
             if (cross1 > cross2) SwapInt(ref cross1,ref cross2);
 
-            Solution parent1 = solutionList[start];
-            Solution parent2 = solutionList[start+1];
+            Solution parent1 = solutionList[start+2];
+            Solution parent2 = solutionList[start+3];
 
             List<City> child1string = new List<City>();
             List<City> child2string = new List<City>();
@@ -82,11 +82,11 @@ namespace GA_Travaling_Salesman
                     child2string.Add(parent1.genome[i]);
                 }
             }
-            solutionList[start + 2].genome = child1string;
-            solutionList[start + 3].genome = child2string;
+            solutionList[start].genome = child1string;
+            solutionList[start + 1].genome = child2string;
 
-            Problem.Evaluate(solutionList[start + 2]);
-            Problem.Evaluate(solutionList[start + 3]);
+            Problem.Evaluate(solutionList[start]);
+            Problem.Evaluate(solutionList[start + 1]);
         }
 
 

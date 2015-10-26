@@ -35,12 +35,20 @@ namespace GA_Travaling_Salesman
         private void RandomizeGenome()
         {
             //genome = "";
+            List<int> indexused=new List<int>();
+            int index;
+           
             for (int i = 0; i < G.target_size; i++)
             {
                // genome += G.randChar();
-                int index=G.rand(G.target_size);
+                do
+                {
+                    index = G.rand(G.target_size);
+                } while (indexused.Contains(index));
+                indexused.Add(index);
                 City temp = Population.CitiesToVisit[index];
                 genome.Add(temp);
+
             }
         }
 
@@ -82,7 +90,7 @@ namespace GA_Travaling_Salesman
                 int count = 0;
                 foreach (City c in genome)
                 {
-                    s += count + ":" + genome[count].location.ToString()+"\n\r";
+                    s += count + ":" + genome[count].location.ToString()+"\n";
                     count++;
                 }
                 return s;

@@ -20,10 +20,10 @@ namespace GA_Travaling_Salesman
             return (char)rand(128);
         }
 
-        static public int population_size = 100;
+        static public int population_size = 200;
         public static double probabilityOfSolutionMutation = 0.1;
         public static double probabilityOfCharMutation = .01;
-        public static int target_size = 10;
+        public static int target_size = 100;
         public static bool chance(double p)
         {
             return G.random.NextDouble() < p;
