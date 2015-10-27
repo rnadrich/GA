@@ -42,6 +42,10 @@
             this.textBoxRuns = new System.Windows.Forms.TextBox();
             this.buttonRun = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.checkBoxLifeSpan = new System.Windows.Forms.CheckBox();
+            this.labelGeneration = new System.Windows.Forms.Label();
+            this.labelRun = new System.Windows.Forms.Label();
+            this.buttonRESET = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,11 +129,55 @@
             this.chart1.Text = "chart1";
             this.chart1.Visible = false;
             // 
+            // checkBoxLifeSpan
+            // 
+            this.checkBoxLifeSpan.AutoSize = true;
+            this.checkBoxLifeSpan.Location = new System.Drawing.Point(46, 77);
+            this.checkBoxLifeSpan.Name = "checkBoxLifeSpan";
+            this.checkBoxLifeSpan.Size = new System.Drawing.Size(71, 17);
+            this.checkBoxLifeSpan.TabIndex = 9;
+            this.checkBoxLifeSpan.Text = "Life Span";
+            this.checkBoxLifeSpan.UseVisualStyleBackColor = true;
+            // 
+            // labelGeneration
+            // 
+            this.labelGeneration.AutoSize = true;
+            this.labelGeneration.Location = new System.Drawing.Point(354, 21);
+            this.labelGeneration.Name = "labelGeneration";
+            this.labelGeneration.Size = new System.Drawing.Size(35, 13);
+            this.labelGeneration.TabIndex = 10;
+            this.labelGeneration.Text = "label3";
+            this.labelGeneration.Visible = false;
+            // 
+            // labelRun
+            // 
+            this.labelRun.AutoSize = true;
+            this.labelRun.Location = new System.Drawing.Point(354, 47);
+            this.labelRun.Name = "labelRun";
+            this.labelRun.Size = new System.Drawing.Size(35, 13);
+            this.labelRun.TabIndex = 11;
+            this.labelRun.Text = "label3";
+            this.labelRun.Visible = false;
+            // 
+            // buttonRESET
+            // 
+            this.buttonRESET.Location = new System.Drawing.Point(242, 73);
+            this.buttonRESET.Name = "buttonRESET";
+            this.buttonRESET.Size = new System.Drawing.Size(75, 23);
+            this.buttonRESET.TabIndex = 12;
+            this.buttonRESET.Text = "RESET";
+            this.buttonRESET.UseVisualStyleBackColor = true;
+            this.buttonRESET.Click += new System.EventHandler(this.buttonRESET_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 712);
+            this.Controls.Add(this.buttonRESET);
+            this.Controls.Add(this.labelRun);
+            this.Controls.Add(this.labelGeneration);
+            this.Controls.Add(this.checkBoxLifeSpan);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.buttonRun);
             this.Controls.Add(this.textBoxRuns);
@@ -155,6 +203,10 @@
         private System.Windows.Forms.TextBox textBoxRuns;
         private System.Windows.Forms.Button buttonRun;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.CheckBox checkBoxLifeSpan;
+        private System.Windows.Forms.Label labelGeneration;
+        private System.Windows.Forms.Label labelRun;
+        private System.Windows.Forms.Button buttonRESET;
     }
 }
 

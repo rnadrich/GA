@@ -12,6 +12,7 @@ namespace GA_Travaling_Salesman
     {
        static public List<City> CitiesToVisit = new List<City>();
         List<Solution> solutionList = new List<Solution>();
+        static bool death = false;
         static public Solution bestSolution;
         static public bool bestHasChanged = false;
         public static int generationsSoFar = 0;
@@ -28,12 +29,30 @@ namespace GA_Travaling_Salesman
 
         void runGeneration()
         {
+            if(death)
+            {
+                Die();
+            }
             bestHasChanged = false;
             Tournaments();
             Mutate();
             generationsSoFar++;
         }
 
+        private void Die()
+        {
+            for (int i = 0; i < solutionList.Count;i++ )
+            {
+                if (G.chance(G.probabilityOfDeath * solutionList[i].age))
+                {
+                    solutionList[i] = new Solution();
+                    Problem.Evaluate(solutionList[i]);
+                }
+                solutionList[i].age++;
+            }
+            bestSolution = null;
+            Evaluate();
+        }
         private void Mutate()
         {
             foreach (Solution s in solutionList)
@@ -86,8 +105,9 @@ namespace GA_Travaling_Salesman
                 }
             }
             solutionList[start].genome = child1string;
+            solutionList[start].age = 0;
             solutionList[start + 1].genome = child2string;
-
+            solutionList[start+1].age = 0;
             Problem.Evaluate(solutionList[start]);
             Problem.Evaluate(solutionList[start + 1]);
         }
@@ -116,6 +136,24 @@ namespace GA_Travaling_Salesman
                 int percentage = (int)(100.0 * (((double)i) / ((double)howMany)));
                 bWorker.ReportProgress(percentage);
                // bestHasChanged = false;
+            }
+        }
+        public void runGenerations(int howMany, BackgroundWorker bWorker, bool deathEnabled)
+        {
+            death = deathEnabled;
+            for (int i = 0; i < howMany; i++)
+            {
+                runGeneration();
+
+                /* if (Problem.isOptimal(bestSolution))
+                 {
+                     soundPlayer.Play();
+                     break;
+                 }*/
+
+                int percentage = (int)(100.0 * (((double)i) / ((double)howMany)));
+                bWorker.ReportProgress(percentage);
+                // bestHasChanged = false;
             }
         }
         public void runGenerations(int howMany)
