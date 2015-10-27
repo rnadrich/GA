@@ -22,6 +22,7 @@ namespace GA_Travaling_Salesman
         private void toolStripButtonExecute_Click(object sender, EventArgs e)
         {
             buttonRun.Enabled = false;
+            buttonRESET.Enabled = false;
             numOfRunsCompleted = 0;
             labelGeneration.Visible = true;
             labelRun.Visible = true;
@@ -46,6 +47,7 @@ namespace GA_Travaling_Salesman
             else filename = "Run " + numOfRunsCompleted + " Generation " + Population.generationsSoFar + " Death is Enabled Output.txt";
             System.IO.File.WriteAllText(filename, "Generation" + Population.generationsSoFar + ")\n" + Population.bestSolution.displayString + Population.bestSolution.fitness);
             buttonRun.Enabled = true;
+            buttonRESET.Enabled = true;
             numOfRunsCompleted++;
             if (numOfRunsCompleted < Convert.ToInt32(textBoxRuns.Text))
             {
@@ -59,7 +61,7 @@ namespace GA_Travaling_Salesman
         {
             progressBarBackThreadEvolution.Value = e.ProgressPercentage;
             labelGeneration.Text = "Current Generation: " + Population.generationsSoFar;
-            labelRun.Text = "Current Run: " + numOfRunsCompleted;
+            labelRun.Text = "Current Run: " + (numOfRunsCompleted+1);
             if(Population.bestHasChanged == true && Population.bestSolution!=null)
             {
                 chart1.Series["Best Solution"].Points.Clear();
@@ -75,6 +77,7 @@ namespace GA_Travaling_Salesman
         private void buttonRESET_Click(object sender, EventArgs e)
         {
             ga.reset();
+            numOfRunsCompleted = 0;
         }
 
 

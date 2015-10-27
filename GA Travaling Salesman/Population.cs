@@ -45,13 +45,12 @@ namespace GA_Travaling_Salesman
             {
                 if (G.chance(G.probabilityOfDeath * solutionList[i].age))
                 {
+                    if (bestSolution == solutionList[i]) bestSolution = solutionList[0];
                     solutionList[i] = new Solution();
                     Problem.Evaluate(solutionList[i]);
                 }
                 solutionList[i].age++;
             }
-            bestSolution = null;
-            Evaluate();
         }
         private void Mutate()
         {
