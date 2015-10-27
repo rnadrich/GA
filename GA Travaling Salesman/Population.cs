@@ -59,6 +59,8 @@ namespace GA_Travaling_Salesman
             else ExpermentalMate(start);
         }
 
+        //Calculates the distance between current city and the possible next cities in each parent Genome
+        //Take the shortest route between each parent
         private void ExpermentalMate(int start)
         {
             double dist1To1, dist1To2, dist2To1, dist2To2; 
