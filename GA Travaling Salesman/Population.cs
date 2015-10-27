@@ -11,6 +11,7 @@ namespace GA_Travaling_Salesman
     class Population
     {
        static public List<City> CitiesToVisit = new List<City>();
+       static bool experment = false;
         List<Solution> solutionList = new List<Solution>();
         static public Solution bestSolution;
         static public bool bestHasChanged = false;
@@ -22,7 +23,6 @@ namespace GA_Travaling_Salesman
             bestSolution = solutionList[0];
             bestHasChanged = false;
             generationsSoFar = 0;
-
         }
 
 
@@ -55,9 +55,39 @@ namespace GA_Travaling_Salesman
         private void RunOneTournament(int start)
         {
             solutionList.Sort(start, 4, null);
-            Mate(start);
+            if (experment == false) Mate(start);
+            else ExpermentalMate(start);
         }
 
+        private void ExpermentalMate(int start)
+        {
+            double dist1To1, dist1To2, dist2To1, dist2To2; 
+            Solution parent1 = solutionList[start + 2];
+            Solution parent2 = solutionList[start + 3];
+
+            List<City> child1string = new List<City>();
+            List<City> child2string = new List<City>();
+
+            child1string.Add(parent1.genome[0]);
+            child2string.Add(parent2.genome[0]);
+            for(int i=1;i<G.target_size;i++)
+            {
+                dist1To1 = child1string[i - 1].distanceTo(parent1.genome[i]);
+                dist1To2 = child1string[i - 1].distanceTo(parent2.genome[i]);
+                dist2To1 = child2string[i - 1].distanceTo(parent1.genome[i]);
+                dist2To2 = child2string[i - 1].distanceTo(parent2.genome[i]);
+                if (dist1To1<dist1To2) child1string.Add(parent1.genome[i]);
+                else child1string.Add(parent2.genome[i]);
+                if (dist2To1 < dist2To2) child2string.Add(parent1.genome[i]);
+                else child2string.Add(parent2.genome[i]);
+            }
+
+            solutionList[start].genome = child1string;
+            solutionList[start + 1].genome = child2string;
+
+            Problem.Evaluate(solutionList[start]);
+            Problem.Evaluate(solutionList[start + 1]);
+        }
         private void Mate(int start)
         {
             int cross1 = G.rand(G.target_size);
@@ -101,9 +131,26 @@ namespace GA_Travaling_Salesman
             }
         }
 
+        public void runGenerations(int howMany, BackgroundWorker bWorker, bool expermentFlag)
+        {
+            experment = expermentFlag;
+            for (int i = 0; i < howMany; i++)
+            {
+                runGeneration();
+                /* if (Problem.isOptimal(bestSolution))
+                 {
+                     soundPlayer.Play();
+                     break;
+                 }*/
+                int percentage = (int)(100.0 * (((double)i) / ((double)howMany)));
+                bWorker.ReportProgress(percentage);
+                // bestHasChanged = false;
+            }
+        }
 
         public void runGenerations(int howMany, BackgroundWorker bWorker)
         {
+            experment = false;
             for (int i = 0; i < howMany; i++)
             {
                 runGeneration();
@@ -119,6 +166,7 @@ namespace GA_Travaling_Salesman
         }
         public void runGenerations(int howMany)
         {
+            experment = false;
             for (int i = 0; i < howMany; i++)
             {
                 runGeneration();

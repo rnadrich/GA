@@ -10,12 +10,10 @@ namespace GA_Travaling_Salesman
     {
         public List<City> genome=new List<City>(); //also the phenotype
         public double fitness;
-        public int age;
         public Solution()
         {
             RandomizeGenome();
             fitness = 0.0;
-            age = 0;
         }
         // Default comparer Solution (higher fitness on top)
         public int CompareTo(Solution compareSol)
