@@ -29,28 +29,34 @@ namespace GA_Travaling_Salesman
 
         void runGeneration()
         {
-            if(death)
-            {
-                Die();
-            }
             bestHasChanged = false;
+            if(death) Die();
             Tournaments();
             Mutate();
             generationsSoFar++;
         }
-
+        private void updateBestSolution()
+        {
+            Solution best=solutionList[0];
+            foreach (Solution s in solutionList)
+            {
+                if (best.fitness > s.fitness) best = s;
+            }
+            bestSolution = best;
+            bestHasChanged = true;
+        }
         private void Die()
         {
             for (int i = 0; i < solutionList.Count;i++ )
             {
                 if (G.chance(G.probabilityOfDeath * solutionList[i].age))
                 {
-                    if (bestSolution == solutionList[i]) bestSolution = solutionList[0];
                     solutionList[i] = new Solution();
                     Problem.Evaluate(solutionList[i]);
                 }
                 solutionList[i].age++;
             }
+            updateBestSolution();
         }
         private void Mutate()
         {
