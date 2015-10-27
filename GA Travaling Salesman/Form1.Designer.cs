@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, 10D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(5D, 10D);
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint4 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, 10D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint5 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint6 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(5D, 10D);
             this.BackThreadEvolution = new System.ComponentModel.BackgroundWorker();
             this.progressBarBackThreadEvolution = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,7 +42,6 @@
             this.textBoxRuns = new System.Windows.Forms.TextBox();
             this.buttonRun = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.checkBoxLifeSpan = new System.Windows.Forms.CheckBox();
             this.labelGeneration = new System.Windows.Forms.Label();
             this.labelRun = new System.Windows.Forms.Label();
             this.buttonRESET = new System.Windows.Forms.Button();
@@ -110,34 +109,23 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(16, 131);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series1.Legend = "Legend1";
-            series1.Name = "Best Solution";
-            series1.Points.Add(dataPoint1);
-            series1.Points.Add(dataPoint2);
-            series1.Points.Add(dataPoint3);
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series2.Legend = "Legend1";
+            series2.Name = "Best Solution";
+            series2.Points.Add(dataPoint4);
+            series2.Points.Add(dataPoint5);
+            series2.Points.Add(dataPoint6);
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(547, 569);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
-            this.chart1.Visible = false;
-            // 
-            // checkBoxLifeSpan
-            // 
-            this.checkBoxLifeSpan.AutoSize = true;
-            this.checkBoxLifeSpan.Location = new System.Drawing.Point(46, 77);
-            this.checkBoxLifeSpan.Name = "checkBoxLifeSpan";
-            this.checkBoxLifeSpan.Size = new System.Drawing.Size(71, 17);
-            this.checkBoxLifeSpan.TabIndex = 9;
-            this.checkBoxLifeSpan.Text = "Life Span";
-            this.checkBoxLifeSpan.UseVisualStyleBackColor = true;
             // 
             // labelGeneration
             // 
@@ -177,7 +165,6 @@
             this.Controls.Add(this.buttonRESET);
             this.Controls.Add(this.labelRun);
             this.Controls.Add(this.labelGeneration);
-            this.Controls.Add(this.checkBoxLifeSpan);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.buttonRun);
             this.Controls.Add(this.textBoxRuns);
@@ -203,7 +190,6 @@
         private System.Windows.Forms.TextBox textBoxRuns;
         private System.Windows.Forms.Button buttonRun;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.CheckBox checkBoxLifeSpan;
         private System.Windows.Forms.Label labelGeneration;
         private System.Windows.Forms.Label labelRun;
         private System.Windows.Forms.Button buttonRESET;

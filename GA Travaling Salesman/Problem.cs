@@ -57,7 +57,6 @@ namespace GA_Travaling_Salesman
                 else visited.Add(end);
                 start = end;
             }
-            score += calculateDistance(s.genome[0], s.genome[s.genome.Count-1]);
             s.fitness = score;
             if (Population.bestSolution == null)
             {
