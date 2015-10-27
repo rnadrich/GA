@@ -23,7 +23,7 @@ namespace GA_Travaling_Salesman
         static public int population_size = 200;
         public static double probabilityOfSolutionMutation = 0.1;
         public static double probabilityOfCharMutation = .01;
-        public static double probabilityOfDeath = 0.01;
+        public static double probabilityOfDeath = 0.05;
         public static int target_size = 100;
         public static bool chance(double p)
         {
