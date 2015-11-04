@@ -63,25 +63,55 @@ namespace GA_Travaling_Salesman
         //Take the shortest route between each parent
         private void ExpermentalMate(int start)
         {
-            double dist1To1, dist1To2, dist2To1, dist2To2; 
             Solution parent1 = solutionList[start + 2];
             Solution parent2 = solutionList[start + 3];
 
             List<City> child1string = new List<City>();
             List<City> child2string = new List<City>();
-
-            child1string.Add(parent1.genome[0]);
-            child2string.Add(parent2.genome[0]);
-            for(int i=1;i<G.target_size;i++)
+            if (G.chance(.5)) //Randomly select which will take the start of parent 1 and parent 2
             {
-                dist1To1 = child1string[i - 1].distanceTo(parent1.genome[i]);
-                dist1To2 = child1string[i - 1].distanceTo(parent2.genome[i]);
-                dist2To1 = child2string[i - 1].distanceTo(parent1.genome[i]);
-                dist2To2 = child2string[i - 1].distanceTo(parent2.genome[i]);
-                if (dist1To1<dist1To2) child1string.Add(parent1.genome[i]);
-                else child1string.Add(parent2.genome[i]);
-                if (dist2To1 < dist2To2) child2string.Add(parent1.genome[i]);
-                else child2string.Add(parent2.genome[i]);
+                child1string.Add(parent1.genome[0]);
+                child2string.Add(parent2.genome[0]);
+            }
+            else
+            {
+                child1string.Add(parent2.genome[0]);
+                child2string.Add(parent1.genome[0]);
+            }
+            for(int i=1;i<G.target_size;i++)//loop through all cities in genome
+            {
+                if (G.chance(.5)) //50/50 chance that child1 will take shortest distance of each parent and child2 will take the one not taken
+                {
+                   double dist1To1 = child1string[i - 1].distanceTo(parent1.genome[i]);
+                  double  dist1To2 = child1string[i - 1].distanceTo(parent2.genome[i]);
+                    if (dist1To1 < dist1To2)
+                    {
+                        child1string.Add(parent1.genome[i]);
+                        child2string.Add(parent2.genome[i]);
+                    }
+                    else
+                    {
+                        child1string.Add(parent2.genome[i]);
+                        child2string.Add(parent1.genome[i]);
+                    }
+                }
+                else  //50/50 chance that child2 will take shortest distance of each parent and child1 will take the one not taken
+                {
+                  double  dist2To1 = child2string[i - 1].distanceTo(parent1.genome[i]);
+                   double dist2To2 = child2string[i - 1].distanceTo(parent2.genome[i]);
+                    if (dist2To1 > dist2To2)
+                    {
+                        child1string.Add(parent1.genome[i]);
+                        child2string.Add(parent2.genome[i]);
+                    }
+                    else
+                    {
+                        child1string.Add(parent2.genome[i]);
+                        child2string.Add(parent1.genome[i]);
+                    }
+                }
+               /* if (dist2To1 < dist2To2) child2string.Add(parent1.genome[i]);
+                else child2string.Add(parent2.genome[i]);*/
             }
 
             solutionList[start].genome = child1string;

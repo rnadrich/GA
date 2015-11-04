@@ -19,6 +19,7 @@ namespace GA_Travaling_Salesman
     {
         GeneticAlgorithmn ga = new GeneticAlgorithmn();
         int numOfRunsCompleted = 0;
+        string avg = "";
         public Form1()
         {
             InitializeComponent();
@@ -48,19 +49,27 @@ namespace GA_Travaling_Salesman
         {
             progressBarBackThreadEvolution.Value = 100;
             string filename = "";
-            if (!checkBoxExperment.Checked) filename = "BaseCase\\Run " + numOfRunsCompleted + " Generation " + Population.generationsSoFar + " Output.txt";
-            else filename = "ExpermentCase\\Run " + numOfRunsCompleted + " Generation " + Population.generationsSoFar + " Output.txt";
+            if (!checkBoxExperment.Checked) filename = "BaseRun " + numOfRunsCompleted + " Generation " + Population.generationsSoFar + " Output.txt";
+            else filename = "ExpermentRun " + numOfRunsCompleted + " Generation " + Population.generationsSoFar + " Output.txt";
             System.IO.File.WriteAllText(filename, "Generation" + Population.generationsSoFar + ")\n" + Population.bestSolution.displayString + Population.bestSolution.fitness);
             buttonRun.Enabled = true;
             buttonRESET.Enabled = true;
             checkBoxExperment.Enabled = true;
             numOfRunsCompleted++;
+            avg += Population.bestSolution.fitness.ToString()+"\n";
             if (numOfRunsCompleted < Convert.ToInt32(textBoxRuns.Text))
             {
                 chart1.Series["Best Solution"].Points.Clear();
                 ga.reset();
                 checkBoxExperment.Enabled = buttonRESET.Enabled = buttonRun.Enabled = false;
                 BackThreadEvolution.RunWorkerAsync();
+            }
+            else
+            {
+                if (!checkBoxExperment.Checked) filename="Base all bestsolutions.ods";
+                else filename="ExpermentRun all bestsolutions.ods";
+                System.IO.File.WriteAllText(filename, avg);
+                avg = "";
             }
         }
 

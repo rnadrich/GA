@@ -81,6 +81,7 @@ namespace GA_Travaling_Salesman
             Problem.Evaluate(this);
         }
 
+
         public string displayString
         {
             get
